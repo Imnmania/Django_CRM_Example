@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Lead
 
 
-def home_page(request):
+def lead_list(request):
     # return HttpResponse('Hello Warudo!')
     leads = Lead.objects.all()
     context = {
@@ -11,4 +11,10 @@ def home_page(request):
         # "name": "Joe",
         # "age": 26
     }
-    return render(request, "second_page.html", context)
+    return render(request, "leads/lead_list.html", context)
+
+def lead_detail(request, pk):
+    print(pk)
+    lead = Lead.objects.get(id = pk)
+    print(lead)
+    return HttpResponse("Here is the detailed view")
